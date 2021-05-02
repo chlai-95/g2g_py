@@ -9,7 +9,7 @@ Python Test
 3. Create virtual environment in the source folder by using following commands :
   - `python3 -m venv venv`
   - `python -m venv venv` (Windows)
-  - `Python -m venv venv`
+  - `Python -m venv venv` (Windows)
 
 4. Enter created virtual environment by using following commands:
   - `. venv/bin/activate`
