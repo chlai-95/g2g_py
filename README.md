@@ -15,7 +15,7 @@ Python Test
   - `. venv/bin/activate`
   - `venv\Scripts\activate` (Windows)
 
-5. Install required dependencies by using following commands:
+5. Install required dependencies by using following commands (for first time set-up only):
   - `python -m pip install -r requirements.txt`
 
 6. Start the application by using following commands:
