@@ -24,7 +24,7 @@ Python Test
 7. Open browser and enter address following to use the application:
   - `127.0.0.1:5000`
 
-8. To stop the application, press  `Ctrl + c` in cmd
+8. To stop the application, press  `Ctrl + c` in cmd or terminal
 
 9. Deactivate the virtual environment by using following commands:
   - `deactivate`
