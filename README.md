@@ -15,8 +15,12 @@ Python Test
   - `python -m pip install -r requirements.txt`
 
 5. Start the application by using following commands:
-  - `export FLASK_APP=app.py`
   - `flask run`
 
 6. Open browser and enter address following to use the application:
   - `127.0.0.1:5000`
+
+7. To stop the application, press  `Ctrl + c` in cmd
+
+8. Deactivate the virtual environment by using following commands:
+  - `deactivate`
