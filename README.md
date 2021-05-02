@@ -6,9 +6,10 @@ Python Test
 2. Open CMD or Terminal and enter to the source folder, following is the example command:
   - `cd C:\\your-own-path\g2g_py_main`
 
-3. Create virtual environment using following commands :
+3. Create virtual environment in the source folder by using following commands :
   - `python3 -m venv venv`
   - `python -m venv venv` (Windows)
+  - `Python -m venv venv`
 
 4. Enter created virtual environment by using following commands:
   - `. venv/bin/activate`
