@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+
+{% block title %}
+    <title>G2G Test</title>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 10vh;
+            padding-bottom: 10vh;
+			height: 100vh;
+        }
+        .big_btn {
+			height: 60vh;
+        }
+        .btn-outline-grey {
+            border-color: #A9A9A9;
+            color: #6c757d;
+        }
+        .btn-outline-grey:hover {
+            background-color: #A9A9A9;
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+		<div class="row">
+            <div class="col-md-6 col-lg-6">
+                <button type="button" class="btn btn-lg btn-outline-grey btn-block big_btn title" style="float: left;" onclick="location.href='/q1';">
+                    Question 1
+                </button>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <button type="button" class="btn btn-lg btn-outline-grey btn-block big_btn title" style="float: right;" onclick="location.href='/q2';">
+                    Question 2
+                </button>
+            </div>
+		</div>
+	</div>
+{% endblock %}

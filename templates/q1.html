@@ -1,0 +1,109 @@
+{% extends "index.html" %}
+
+{% block title %}
+    <title>Q1 - Lowercase Converter</title>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 20vh;
+            padding-bottom: 10vh;
+        }
+        .big_btn {
+			height: 80vh;
+        }
+        .title {
+            font-size: 50px; 
+        }
+        input.input-height {
+            height: 30px !important; 
+        }
+        span.select2-selection {
+            padding: 8px 16px 8px 16px !important;
+            height: 30px !important; 
+        }
+        span.select2-selection__arrow {
+            height: 45px !important; 
+        }
+		.custom-control-lg .custom-control-label::before,
+		.custom-control-lg .custom-control-label::after {
+			top: 0.1rem !important;
+			left: -2rem !important;
+			width: 1.25rem !important;
+			height: 1.25rem !important;
+		}
+		.custom-control-lg .custom-control-label {
+			margin-left: 0.5rem !important;
+			font-size: 1rem !important;
+		}
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container count" id="timer">
+        <div class="col-md-12 col-lg-12 clearfix text-center">
+            <button name="back_to_dashboard" id="back_to_dashboard" type="button" class="btn btn-outline-secondary btn-lg float-left" onclick="window.stop();location.href='/';"><i class="fas fa-reply"></i></button>
+            <button name="reset_form" id="reset_form" type="button" class="btn btn-outline-secondary btn-lg float-right" onclick="resetForm();"><i class="fas fa-redo-alt"></i></button>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="text-center">
+                <h1 class="title" style="display:inline-block;">Lowercase Converter</i></h1>
+            </div>
+            <hr>
+            <section>
+                <div class="row">
+                    <div class="col form-group">
+                        <label for=""><h5><b>Strings to be convert:</b></h5></label>
+                        <div class="input-group text-left">
+                            <textarea id='target_text' name='target_text' class='form-control' data-target='#result' style='width:100%' rows='5' autofocus></textarea>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col form-group">
+                        <label for=""><h5><b>Results:</b></h5></label>
+                        <div class="input-group text-left">
+                            <p id='result' style='white-space:pre'></p>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+		
+		$('#target_text').on('keyup', function(e){
+            let result_p = $(e.target).data('target')
+            if(e.target.value != ''){
+                $.ajax({
+                    url: '/convert',
+                    type: 'POST',
+                    data: {
+                        target_text: e.target.value
+                    }
+                }).done(function(result) {
+                    $( result_p ).html( result );
+                });
+            } else {
+                $( result_p ).html( '' );
+            }
+        });
+        
+        function resetForm(){
+			document.getElementById('target_text').value = "";
+			document.getElementById('result').innerHTML = "";
+        }
+
+    </script>
+{% endblock %}

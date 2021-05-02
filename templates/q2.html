@@ -1,0 +1,131 @@
+{% extends "index.html" %}
+
+{% block title %}
+    <title>Q2 - Currency Converter</title>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 20vh;
+            padding-bottom: 10vh;
+        }
+        .big_btn {
+			height: 80vh;
+        }
+        .title {
+            font-size: 50px; 
+        }
+        input.input-height {
+            height: 30px !important; 
+        }
+        span.select2-selection {
+            padding: 8px 16px 8px 16px !important;
+            height: 30px !important; 
+        }
+        span.select2-selection__arrow {
+            height: 45px !important; 
+        }
+		.custom-control-lg .custom-control-label::before,
+		.custom-control-lg .custom-control-label::after {
+			top: 0.1rem !important;
+			left: -2rem !important;
+			width: 1.25rem !important;
+			height: 1.25rem !important;
+		}
+		.custom-control-lg .custom-control-label {
+			margin-left: 0.5rem !important;
+			font-size: 1rem !important;
+		}
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-md-12 col-lg-12 clearfix text-center">
+            <button name="back_to_dashboard" id="back_to_dashboard" type="button" class="btn btn-outline-secondary btn-lg float-left" onclick="window.stop();location.href='/';"><i class="fas fa-reply"></i></button>
+            <button name="reset_form" id="reset_form" type="button" class="btn btn-outline-secondary btn-lg float-right" onclick="resetForm();"><i class="fas fa-redo-alt"></i></button>
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <div class="text-center">
+                <h1 class="title" style="display:inline-block;">Currency Converter</h1>
+            </div>
+            <hr>
+            <section>
+                <form id="convertorForm" name="convertorForm" method="GET" action="/q2">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-group">
+                                <label for=""><h5><b>From:</b></h5></label>
+                                <div class="input-group text-left">
+                                    <select name='from' id="from" class='form-control' form='convertorForm'>
+                                    {% for options in _options %}
+                                        <option value="{{_options[options]['id']}}" {% if _options[options]['id'] == _from%} selected {%endif%}>{{_options[options]['id']}} - {{_options[options]['currencyName']}}</option>
+                                    {% endfor %}
+                                    </select>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-group">
+                                <label for=""><h5><b>To:</b></h5></label>
+                                <div class="input-group text-left">
+                                    <select name='to' id="to" class='form-control' form='convertorForm'>
+                                    {% for options in _options %}
+                                        <option value="{{_options[options]['id']}}" {% if _options[options]['id'] == _to%} selected {%endif%}>{{_options[options]['id']}} - {{_options[options]['currencyName']}}</option>
+                                    {% endfor %}
+                                    </select>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label for=""><h5><b>Amount:</b></h5></label>
+                                <div class="input-group text-left">
+                                    <input type='number' id="amount" class='form-control' name='amount' form='convertorForm' value='{{_amount}}'/>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                <button type='submit' class='btn btn-outline-primary btn-block btn-lg' name='start_convert' form='convertorForm'>Convert</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {% if converted %}
+                <div id="result_div">
+                    {% if _value %}
+                        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-5'>
+                            <h6 class='display-6 text-center text-primary mb-3'>Results:</h6>
+                            <figure class='text-center'>
+                                <blockquote class='blockquote'>
+                                    <h5 class='display-5'>{{_amount}} {{_from}} = {{_value['normal']}} {{_to}}</h5>
+                                </blockquote>
+                                <blockquote class='blockquote'>
+                                    <h6 class='display-6'>{{_amount}} {{_to}} = {{_value['revert']}} {{_from}}</h6>
+                                </blockquote>
+                            </figure>
+                        </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        
+        function resetForm(){
+			document.getElementById('from').value = "";
+			document.getElementById('to').value = "";
+			document.getElementById('amount').value = 0;
+			document.getElementById('result_div').innerHTML = "";
+        }
+
+    </script>
+{% endblock %}
